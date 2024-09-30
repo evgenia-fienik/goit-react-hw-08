@@ -18,13 +18,27 @@ export default function LoginForm() {
     };
     const dispatch = useDispatch();
     const isLoading = useSelector(selectIsLoading);
+    
+    const [loginError, setLoginError] = useState("");
    
 
-    const handleSubmit = (values, actions) => {
-        console.log(values);
-        dispatch(logIn(values));
-        actions.resetForm();
+    // const handleSubmit = (values, actions) => {
+    //     console.log(values);
+    //     dispatch(logIn(values));
+    //     actions.resetForm();
+    // };
+
+       const handleSubmit = async (values, actions) => {
+        try {
+            await dispatch(logIn(values)).unwrap(); 
+            actions.resetForm(); 
+            setLoginError(""); 
+        } catch (error) {
+            setLoginError("Invalid email or password."); 
+        }
     };
+
+   
 
     return (
         <Formik
@@ -38,14 +52,13 @@ export default function LoginForm() {
                     <label className={css.label} htmlFor="email">Email</label>
                     <Field className={css.input}type="email" name="email" />
                        <ErrorMessage className={css.error} name="email" component="div" />
-                   
             </div>
                 <div>
                     <label className={css.label} htmlFor="password">Password</label>
                         <Field className={css.input} type="password" name="password"  />
                         <ErrorMessage className={css.error} name="password" component="div" />
-                    
                 </div>
+                {loginError && <div className={css.error}>{loginError}</div>}
                 <button className={css.button} disabled={isLoading} type="submit">Log In</button>
             </Form>
         </Formik>

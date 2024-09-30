@@ -21,3 +21,5 @@ export const selectFilteredContacts = createSelector(
     );
   }
 );
+
+export const selectContactsLoading = (state) => state.contacts.isLoading;

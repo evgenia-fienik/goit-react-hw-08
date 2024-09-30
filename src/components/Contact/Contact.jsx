@@ -1,27 +1,68 @@
+// import { useDispatch } from "react-redux";
+// import { FaUser } from "react-icons/fa6";
+// import { FaPhoneAlt } from "react-icons/fa";
+// import { addContact, deleteContact } from "../../redux/contacts/operations";
+// import css from './Contact.module.css'
+// import { useState } from "react";
+// import Modal from '../Modal/Modal';
+
+// export default function Contact({contact}) {
+//     const dispatch = useDispatch();
+//     const [isModalOpen, setIsModalOpen] = useState(false);
+    
+//     function onAdd(contact) {
+//       dispatch(addContact(contact));
+  
+//     }
+//     function onDelete(){
+//         dispatch(deleteContact(contact.id));
+//     }
+   
+//     return (
+//         <div className={css.container}>
+//         <div className={css.item}>
+//             <p className={css.element}><FaUser /> {contact?.name || 'No name available'}</p>
+//             <p className={css.element}><FaPhoneAlt/> {contact.number}</p>
+//         </div>
+//             <button className={css.btn} onClick={onDelete}>Delete</button>
+//         </div>
+//     );
+// }
+
+// components/Contact/Contact.js
 import { useDispatch } from "react-redux";
 import { FaUser } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { addContact, deleteContact } from "../../redux/contacts/operations";
-import css from './Contact.module.css'
+import css from './Contact.module.css';
+import { useState } from "react";
+import Modal from '../Modal/Modal';
 
-export default function Contact({contact}) {
+export default function Contact({ contact }) {
     const dispatch = useDispatch();
-    
-    function onAdd(contact) {
-      dispatch(addContact(contact));
-  
-    }
-    function onDelete(){
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleDeleteClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const confirmDelete = () => {
         dispatch(deleteContact(contact.id));
-    }
-   
+        setIsModalOpen(false);
+    };
+
     return (
         <div className={css.container}>
-        <div className={css.item}>
-            <p className={css.element}><FaUser /> {contact?.name || 'No name available'}</p>
-            <p className={css.element}><FaPhoneAlt/> {contact.number}</p>
-        </div>
-            <button className={css.btn} onClick={onDelete}>Delete</button>
+            <div className={css.item}>
+                <p className={css.element}><FaUser /> {contact?.name || 'No name available'}</p>
+                <p className={css.element}><FaPhoneAlt/> {contact.number}</p>
+            </div>
+            <button className={css.btn} onClick={handleDeleteClick}>Delete</button>
+            <Modal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                onConfirm={confirmDelete} 
+            />
         </div>
     );
 }
