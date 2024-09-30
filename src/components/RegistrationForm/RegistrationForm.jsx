@@ -21,7 +21,6 @@ export default function RegistrationForm() {
         console.log(values);
         dispatch(register(values));
         action.resetForm();
-//    onSubmit(values);
   };
 
     

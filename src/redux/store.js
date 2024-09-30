@@ -12,12 +12,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/slice";
 import contactsReducer from "./contacts/slice";
-// import filtersReducer from "./filters/slice";
-
-// const rootReducer = combineReducers({
-//   contacts: contactsReducer,
-//   filters: filtersReducer,
-// });
+import filterReducer from "./filters/slice";
 
 const persistedAuthReducer = persistReducer(
   {
@@ -31,7 +26,8 @@ const persistedAuthReducer = persistReducer(
 export const store = configureStore({
   reducer: {
     contacts: contactsReducer,
-    auth: authReducer,
+    auth: persistedAuthReducer,
+    filter: filterReducer, //
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -40,3 +36,5 @@ export const store = configureStore({
       },
     }),
 });
+
+export const persistor = persistStore(store);

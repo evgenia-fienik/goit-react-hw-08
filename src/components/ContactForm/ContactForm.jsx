@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
 import css from './ContactForm.module.css'
 import { nanoid } from '@reduxjs/toolkit';
+import { fetchContacts } from '../../redux/contacts/operations';
 
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -16,12 +17,13 @@ export default function ContactForm() {
     name: Yup.string().min(2, "Too Short!").max(50, "Too Long!").required("Required"),
     number: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required"),
   });
-
   const handleSubmit = (values, actions) => {
-    values.id = nanoid();
-    dispatch(addContact(values));
+    const contact = { ...values, id: nanoid() };
+    dispatch(addContact(contact)).then(() => {
+        dispatch(fetchContacts()); 
+    });
     actions.resetForm();
-  };
+};
 
   const nameId = nanoid();
   const numberId = nanoid();

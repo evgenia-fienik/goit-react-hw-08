@@ -64,19 +64,24 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkApi) => {
  * GET @ /users/me
  * headers: Authorization: Bearer token
  */
-
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
-  async (_, thunkApi) => {
-    const reduxState = thunkApi.getState();
-    setAuthHeader(reduxState.auth.token);
-    const response = await axios.get("/users/me");
-    return response.data;
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    setAuthHeader(persistedToken);
+
+    try {
+      const response = await axios.get("/users/current");
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   },
   {
-    condition: (_, thunkApi) => {
-      const reduxState = thunkApi.getState();
-      return reduxState.auth.token !== null;
+    condition: (_, thunkAPI) => {
+      const state = thunkAPI.getState();
+      return state.auth.token !== null;
     },
   }
 );

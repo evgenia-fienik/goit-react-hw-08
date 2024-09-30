@@ -1,0 +1,16 @@
+.div{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.p{
+font-weight: 700;
+font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.button{
+max-height: 50px;
+padding: 3px 8px;
+
+}
