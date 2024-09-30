@@ -36,7 +36,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { addContact, deleteContact } from "../../redux/contacts/operations";
 import css from './Contact.module.css';
 import { useState } from "react";
-import Modal from '../Modal/Modal';
+
 
 export default function Contact({ contact }) {
     const dispatch = useDispatch();
