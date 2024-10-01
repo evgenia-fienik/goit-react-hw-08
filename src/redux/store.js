@@ -14,20 +14,17 @@ import authReducer from "./auth/slice";
 import contactsReducer from "./contacts/slice";
 import filterReducer from "./filters/slice";
 
-const persistedAuthReducer = persistReducer(
-  {
-    key: "jwt-token",
-    storage,
-    whitelist: ["token"],
-  },
-  authReducer
-);
+const persistedAuthReducer = {
+  key: "auth",
+  storage,
+  whitelist: ["token"],
+};
 
 export const store = configureStore({
   reducer: {
+    auth: persistReducer(persistedAuthReducer, authReducer),
     contacts: contactsReducer,
-    auth: persistedAuthReducer,
-    filter: filterReducer, //
+    filter: filterReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
