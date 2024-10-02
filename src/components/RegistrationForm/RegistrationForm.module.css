@@ -21,10 +21,15 @@
     margin-top: 15px;
     padding: 3px 10px;
     background-color: #d57f34;
-        color: white;
-        border: none;
-        border-radius: 3px;
+    color: white;
+    border: none;
+    border-radius: 3px;
 }
+
+.button:hover {
+background-color: #c67025;
+}
+
 .error{
     color: red;
     margin-top: 5px;

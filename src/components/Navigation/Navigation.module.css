@@ -8,7 +8,10 @@
     color: #d57f34;
 
 }
+.link:hover {
+    text-decoration: underline;
+}
 
 .link.active {
-    color: #e84a5f;
+    color: #c67025;
 }

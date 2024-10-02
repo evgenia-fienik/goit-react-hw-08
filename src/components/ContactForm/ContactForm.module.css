@@ -40,7 +40,10 @@
   color:white;
   border: none;
   border-radius: 3px;
+}
 
+.btn:hover {
+  background-color: #c67025;
 }
 
 .error {

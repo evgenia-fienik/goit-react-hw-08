@@ -28,7 +28,9 @@ export default function ContactForm() {
   const nameId = nanoid();
   const numberId = nanoid();
       
- return (
+  return (
+    <div>
+      <h2>Your contacts:</h2>
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -52,7 +54,8 @@ export default function ContactForm() {
           <button className={css.btn} type="submit">Add contact</button>
         </Form>
     
-    </Formik>
+      </Formik>
+      </div>
   );
 }
 
