@@ -5,11 +5,8 @@ export default function HomePage() {
     <>
         <DocumentTitle>Home</DocumentTitle>
         <div className={css.container}>
-         <h1 className={css.title}>Task manager welcome page{' '}
-          <span role="img" aria-label="Greeting icon">
-            💁‍♀️
-                    </span>
-                </h1>       
+                <h1 className={css.title}>Phonebook</h1> 
+                <p>This app will help you conveniently manage your contact book. It is user-friendly: you can easily create a new contact, find the one you need, and delete it if necessary.</p>
         </div>
     </>
     )

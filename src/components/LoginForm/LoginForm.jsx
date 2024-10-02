@@ -20,15 +20,9 @@ export default function LoginForm() {
     const isLoading = useSelector(selectIsLoading);
     
     const [loginError, setLoginError] = useState("");
-   
+ 
 
-    // const handleSubmit = (values, actions) => {
-    //     console.log(values);
-    //     dispatch(logIn(values));
-    //     actions.resetForm();
-    // };
-
-       const handleSubmit = async (values, actions) => {
+     const handleSubmit = async (values, actions) => {
         try {
             await dispatch(logIn(values)).unwrap(); 
             actions.resetForm(); 

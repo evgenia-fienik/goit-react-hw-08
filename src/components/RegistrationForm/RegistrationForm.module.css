@@ -20,6 +20,10 @@
 .button {
     margin-top: 15px;
     padding: 3px 10px;
+    background-color: #d57f34;
+        color: white;
+        border: none;
+        border-radius: 3px;
 }
 .error{
     color: red;

@@ -6,11 +6,16 @@
 
 .p{
 font-weight: 700;
-font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+font-size: 18px;
+color: rgb(59, 59, 72)
 }
 
 .button{
 max-height: 50px;
-padding: 3px 8px;
+padding: 7px;
+  background-color:#d57f34;
+  color:white;
+  border: none;
+  border-radius: 3px;
 
 }

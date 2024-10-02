@@ -13,6 +13,8 @@ import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/slice";
 import contactsReducer from "./contacts/slice";
 import filterReducer from "./filters/slice";
+import modalReducer from "./modal/slice";
+import { combineReducers } from "redux";
 
 const persistedAuthReducer = {
   key: "auth",
@@ -20,12 +22,15 @@ const persistedAuthReducer = {
   whitelist: ["token"],
 };
 
+const rootReducer = combineReducers({
+  auth: persistReducer(persistedAuthReducer, authReducer),
+  contacts: contactsReducer,
+  filter: filterReducer,
+  modal: modalReducer,
+});
+
 export const store = configureStore({
-  reducer: {
-    auth: persistReducer(persistedAuthReducer, authReducer),
-    contacts: contactsReducer,
-    filter: filterReducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

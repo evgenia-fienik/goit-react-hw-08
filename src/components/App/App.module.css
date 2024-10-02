@@ -1,4 +1,10 @@
-#root {
+.container{
+  max-width: 1440px;
+  color:rgb(59, 59, 72);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* #root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   max-width: 1280px;
   margin: 0 auto;
@@ -41,5 +47,5 @@
 
 .read-the-docs {
   color: #888;
-}
+} */
 
